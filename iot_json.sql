@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 04, 2025 at 04:40 AM
+-- Generation Time: Oct 08, 2025 at 03:51 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.11
 
@@ -33,27 +33,44 @@ CREATE TABLE `data` (
   `nilaiData` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`idSensor`, `tglData`, `nilaiData`) VALUES
+(5, '2025-10-08 22:51:16', 1817),
+(3, '2025-10-08 22:51:21', 32.9),
+(4, '2025-10-08 22:51:21', 60.3),
+(5, '2025-10-08 22:51:21', 1819),
+(3, '2025-10-08 22:51:26', 32.9),
+(4, '2025-10-08 22:51:26', 60.4),
+(5, '2025-10-08 22:51:26', 1799),
+(3, '2025-10-08 22:51:31', 32.9),
+(4, '2025-10-08 22:51:31', 60.3),
+(5, '2025-10-08 22:51:31', 1765);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sensor`
+-- Table structure for table `sensors`
 --
 
-CREATE TABLE `sensor` (
+CREATE TABLE `sensors` (
   `idsensor` int NOT NULL,
   `namasensor` varchar(32) NOT NULL,
   `statussensor` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sensor`
+-- Dumping data for table `sensors`
 --
 
-INSERT INTO `sensor` (`idsensor`, `namasensor`, `statussensor`) VALUES
+INSERT INTO `sensors` (`idsensor`, `namasensor`, `statussensor`) VALUES
 (1, 'LED 1', 1),
-(2, 'LED 2', 1),
-(5, 'LUMEN', 1),
-(6, 'SUHU', 1);
+(2, 'LED 2', 0),
+(3, 'LUMEN', 1),
+(4, 'SUHU', 1),
+(5, 'TEMPERAURE', 1);
 
 --
 -- Indexes for dumped tables
@@ -63,12 +80,12 @@ INSERT INTO `sensor` (`idsensor`, `namasensor`, `statussensor`) VALUES
 -- Indexes for table `data`
 --
 ALTER TABLE `data`
-  ADD PRIMARY KEY (`idSensor`);
+  ADD KEY `idSensor` (`idSensor`) USING BTREE;
 
 --
--- Indexes for table `sensor`
+-- Indexes for table `sensors`
 --
-ALTER TABLE `sensor`
+ALTER TABLE `sensors`
   ADD PRIMARY KEY (`idsensor`);
 
 --
@@ -79,7 +96,7 @@ ALTER TABLE `sensor`
 -- Constraints for table `data`
 --
 ALTER TABLE `data`
-  ADD CONSTRAINT `data_ibfk_1` FOREIGN KEY (`idSensor`) REFERENCES `sensor` (`idsensor`);
+  ADD CONSTRAINT `data_ibfk_1` FOREIGN KEY (`idSensor`) REFERENCES `sensors` (`idsensor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
